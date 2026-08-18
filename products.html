@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Mods - Bangali Gamer | FC  Bangladesh Editions</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">Bangali <span>Gamer</span></a>
+        
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="products.html" style="color: var(--primary-green);">Products</a>
+            <a href="updates.html">Updates</a>
+            <a href="about.html">About</a>
+        </div>
+
+        <button class="menu-btn" id="mobile-menu-btn">☰</button>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Our All Editions</h1>
+        <p>Choose the best FC  Bangladesh mod that suits your PC and gameplay style.</p>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading-products" style="text-align: center; padding: 5rem; color: var(--primary-green); font-size: 1.5rem; font-weight: bold;">
+        Loading Latest Editions from Server...
+    </div>
+
+    <!-- Dynamic Products Container (Data will come from Google Sheets) -->
+    <div id="dynamic-products-container"></div>
+
+    <!-- Order Form Modal (Hidden by default) -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <h2>Complete Your Order</h2>
+            <p class="modal-subtitle">Fill out the form below to confirm your order.</p>
+
+            <!-- Payment Instructions Box (Updated for Security) -->
+            <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid var(--primary-green); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.6;">
+                <h3 style="color: var(--primary-green); margin-bottom: 12px; font-size: 1.2rem;">📢 অর্ডার কনফার্মেশন নির্দেশনা</h3>
+                <p style="color: white; margin-bottom: 8px;">✅ নিরাপত্তার স্বার্থে আমরা সরাসরি ওয়েবসাইটে নম্বর দিচ্ছি না। পেমেন্ট নম্বর (বিকাশ/নগদ) পেতে অনুগ্রহ করে নিচের বাটনে ক্লিক করে আমাদের <strong>WhatsApp</strong>-এ মেসেজ দিন।</p>
+                
+                <div style="text-align: center; margin: 15px 0;">
+                    <a href="https://wa.me/8801570297708?text=Hello%20Bangali%20Gamer!%20I%20want%20to%20buy%20a%20mod.%20Please%20give%20me%20the%20payment%20number." target="_blank" style="background: #25D366; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; display: inline-block;">
+                        💬 Message on WhatsApp
+                    </a>
+                </div>
+
+                <p style="color: var(--text-muted); margin-bottom: 5px;">📸 নম্বর নিয়ে পেমেন্ট সম্পন্ন করার পর, <strong>Payment Method</strong> সিলেক্ট করে <strong>Transaction ID</strong> নিচের ফর্মে দিন।</p>
+                <p style="color: var(--text-muted); margin-bottom: 12px;">⚡ পেমেন্ট ভেরিফাই হওয়ার সাথে সাথেই আপনার অর্ডার প্রসেস করা হবে।</p>
+                
+                <p style="margin-top: 10px; font-weight: bold; color: var(--primary-green);">🙏 ধন্যবাদ, আমাদের সাথে থাকার জন্য!<br>🎮 Bangali Gamer Team</p>
+            </div>
+            
+            <form id="checkout-form">
+                <!-- Product Details (Auto-filled & Read Only) -->
+                <div class="form-group">
+                    <label>Selected Product</label>
+                    <input type="text" id="order-product" readonly class="readonly-input">
+                </div>
+                <div class="form-group">
+                    <label>Amount (৳)</label>
+                    <input type="text" id="order-amount" readonly class="readonly-input">
+                </div>
+
+                <hr class="form-divider">
+
+                <!-- Customer Details -->
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="customer-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label>Gmail Address *</label>
+                    <input type="email" id="customer-email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp Number *</label>
+                    <input type="tel" id="customer-whatsapp" placeholder="e.g. 01XXXXXXXXX" required>
+                </div>
+
+                <hr class="form-divider">
+
+                <!-- Payment Details -->
+                <div class="form-group">
+                    <label>Payment Method *</label>
+                    <select id="payment-method" required>
+                        <option value="">Select Method</option>
+                        <option value="bKash">bKash</option>
+                        <option value="Nagad">Nagad</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Transaction ID *</label>
+                    <input type="text" id="transaction-id" placeholder="e.g. 9B8C7D6E5F" required>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-primary btn-submit-order" id="submit-btn">SUBMIT ORDER</button>
+                
+                <!-- WhatsApp Verification Button (Hidden initially) -->
+                <button type="button" class="btn-whatsapp" id="whatsapp-btn" style="display: none;">
+                    VERIFY VIA WHATSAPP
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>Bangali <span>Gamer</span></h2>
+                <p>The First FIFA Game Developer Team in Bangladesh.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="updates.html">Updates</a>
+                <a href="about.html">About</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Bangali Gamer. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/fetch-products.js"></script>
+    <script src="assets/js/order.js"></script>
+</body>
+</html>
