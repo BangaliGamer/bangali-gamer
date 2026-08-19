@@ -315,6 +315,18 @@ a {
     margin-bottom: 1rem;
 }
 
+/* =========================================
+   TEXT PRESERVATION (Number 5 Solution)
+   ========================================= */
+.preserve-text {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
 .features-list {
     list-style-position: inside;
     color: var(--text-muted);
