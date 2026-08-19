@@ -29,9 +29,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Determine if Row Reverse is needed for design (alternating layout)
                 const isReverse = index % 2 !== 0 ? "row-reverse" : "";
                 
-                // Format features into list items (split by comma)
-                const featuresList = product.Features.split(',').map(f => `<li>${f.trim()}</li>`).join('');
-                
                 // Handle Pricing Logic
                 let priceHTML = '';
                 let finalPrice = product.Price;
@@ -105,9 +102,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                             <p class="product-description">${product.Description}</p>
                             
                             <h3>Main Features:</h3>
-                            <ul class="features-list">
-                                ${featuresList}
-                            </ul>
+                            <!-- Here is the updated code for Number 5 Solution -->
+                            <div class="preserve-text" style="color: var(--text-muted); margin-bottom: 2rem;">${product.Features}</div>
 
                             <div class="price-section">
                                 <span class="price-label">Price:</span>
